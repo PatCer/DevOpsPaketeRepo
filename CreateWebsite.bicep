@@ -1,19 +1,20 @@
-param pWebsiteName string = uniqueString(resourceGroup().id)
-param pLocation string = resourceGroup().location
-
-resource webApplication 'Microsoft.Web/sites@2023-01-01' = {
-  name: pWebsiteName
-  location: pLocation
+param location string = resourceGroup().location
+ 
+resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
+  name: 'AppointmentApplicationUserStory1-plan'
+  location: location
+  sku: {
+    name: 'B1'
+    tier: 'Basic'
+  }
 }
-
-resource webApplicationExtension 'Microsoft.Web/sites/extensions@2023-01-01' = {
-  parent: webApplication
-  name: 'MSDeploy'
+ 
+resource appService 'Microsoft.Web/sites@2021-02-01' = {
+  name: 'AppointmentApplicationUserStory1'
+  location: location
+  kind: 'app'
   properties: {
-    appOffline: true
-    packageUri: 'packageUri'
-    setParameters: {
-      'IIS Web Application Name': 'TestWebApp'     
-    }
+    serverFarmId: appServicePlan.id
+    httpsOnly: true
   }
 }
