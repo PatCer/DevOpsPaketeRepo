@@ -88,7 +88,8 @@
     Service Principal:
       An Azure service principal is an identity created for use with applications, hosted services, and
       automated tools to access Azure resources
-Azure Resources to host a Website:
+      
+## Azure Resources to host a Website:
 
     Cloud technologies can turn on and off like a tap. It's becoming so much easier to build solutions
     in Azure, each and every day. Azure provides a myriad off services, from compute to data analytics.
@@ -125,3 +126,6 @@ Azure Resources to host a Website:
     custom Docker container. Azure also offers several container-specific services. With
     Azure Container Instances, for example, you can quickly deploy simple containerised
     solutions. If your solution requires advanced monitoring, scaling and orchestration.
+
+## IoT Resource:
+    An IoT hub is a central platform that facilitates communication between IoT devices and the cloud. It collects, processes, and transmits data from various devices, ensuring secure and efficient bidirectional communication. Key functions include data ingestion, processing, and implementing security measures. IoT hubs play a pivotal role in managing large-scale device connectivity and contribute to the overall reliability and scalability of IoT ecosystems.
