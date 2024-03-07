@@ -92,6 +92,32 @@ resource IoTHub 'Microsoft.Devices/IotHubs@2021-07-02' = {
           isEnabled: true
         }
       ]
+      fallbackRoute: {
+        name: '$fallback'
+        source: 'DeviceMessages'
+        condition: 'true'
+        endpointNames: [
+          'events'
+        ]
+        isEnabled: true
+      }
+    }
+    messagingEndpoints: {
+      fileNotifications: {
+        lockDurationAsIso8601: 'PT1M'
+        ttlAsIso8601: 'PT1H'
+        maxDeliveryCount: 10
+      }
+    }
+    enableFileUploadNotifications: false
+    cloudToDevice: {
+      maxDeliveryCount: 10
+      defaultTtlAsIso8601: 'PT1H'
+      feedback: {
+        lockDurationAsIso8601: 'PT1M'
+        ttlAsIso8601: 'PT1H'
+        maxDeliveryCount: 10
+      }
     }
   }
 }
