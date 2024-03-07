@@ -1,6 +1,6 @@
 # DevOps:
 <p align="center">
-<img src="https://images.ctfassets.net/xz1dnu24egyd/2S16xLgZGnBkxXgFVQOrxv/24e5808aba2b4c7024c15daa6b6ef5f7/loop-white.svg" width="350" height="350">
+<img src="https://de.libelle.com/media/images/Grafik_DevOps.width-500.png" height="350">
 </p>
 
 ## What is DevOps:
@@ -12,6 +12,10 @@
           After the Tests go through it gets deployed
       Continous Delivery:
           The Automnation of Building, Testing, Configurating and Deploying a Repo
+<p align="center">
+<img src="https://www.agile-im.de/wp-content/uploads/2023/03/ml-und-devops-pipeline.png" height="350">
+</p>
+
 ## What is IOT(Internet of Things):
     A Network containing physical devices with sensores, software etc. that is connected to the Internet
 ## What is Bicep:
