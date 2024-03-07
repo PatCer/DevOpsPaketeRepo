@@ -17,7 +17,7 @@ function DeployToMain {
     az deployment group create --resource rg-patrik-cerna --template-file UserStory2and3\IoTMessageResourceTemplate.bicep --parameters UserStory2and3\parameters.json --confirm-with-what-if
 }
 
-# Main script logic
+
 if ($environment -eq 'dev') {
     DeployToDev
 }
