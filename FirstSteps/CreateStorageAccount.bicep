@@ -35,3 +35,12 @@ resource myStorage 'Microsoft.Storage/storageAccounts@2023-01-01' ={
   }
   kind: 'StorageV2'
 }
+resource 
+
+resource BlobContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01'={
+  parent: myStorage
+  name: 'blobStorage'
+}
+
+
+
