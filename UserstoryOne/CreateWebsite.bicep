@@ -49,14 +49,3 @@ resource deploymentCredentials 'Microsoft.Web/sites/sourcecontrols@2023-01-01' =
     isManualIntegration: true
   }
 }
-
-//resource sourceControl 'Microsoft.Web/sites/sourcecontrols@2021-02-01' = {
-//  parent: appService
-//  name: 'web' 
-//  properties: {
-//    //repoUrl: 'https://github.com/PatCer/DevOpsPaketeRepo.git'
-//    branch: 'main'
-//    isManualIntegration: false
-//    //token: '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'
-//  }
-//}
