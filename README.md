@@ -1,4 +1,7 @@
 # What is DevOps:
+<p align="center">
+<img src="https://images.ctfassets.net/xz1dnu24egyd/2S16xLgZGnBkxXgFVQOrxv/24e5808aba2b4c7024c15daa6b6ef5f7/loop-white.svg" width="350" height="350">
+</p>
     DevOps is a methodology used by Developer and IT Operations to cut the life cycle of development operations by having the dev and ops teams work together by sharing feedback and automating their work processes
     Procedures:
       Continous Integration:
