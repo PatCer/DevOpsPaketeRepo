@@ -73,7 +73,7 @@ resource IoTHub 'Microsoft.Devices/IotHubs@2023-06-30' = {
           {
             connectionString: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}'
             containerName: storageContainerName
-            fileNameFormat: '{iothub}/{partition}/{YYYY}/{MM}/{DD}/{HH}/{mm}'
+            fileNameFormat: '{iothub}{partition}{YYYY}{mm}{DD}{HH}{MM}/blob'
             batchFrequencyInSeconds: 100
             maxChunkSizeInBytes: 104857600
             encoding: 'JSON'

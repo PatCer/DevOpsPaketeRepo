@@ -7,16 +7,12 @@ $storage = "mytestdemojoihzsskii2rc"
 $deviceId = "PC"
 $message = "Testing this Message"
 $rgName = "rg-patrik-cerna"
-$containerName = "mytestdemoresults"
+$containerName = 'mytestdemoresultS'
 
-$DestinationPath = "UserStory2and3\Test.json"
+$DestinationPath = 'UserStory2and3\Test.json'
 
 function SendAndTestMessageToDev {
-    Write-Host "Sending Message to Dev environment"
-
-    #Getting the time of the sending
-    $date = Get-Date
-    $minutes = $date.Minute
+    Write-Host "Sending Message"
     
     #Sending Message
     az iot device send-d2c-message --hub-name $iotHubName --device-id $deviceId --data $message
@@ -28,7 +24,7 @@ function SendAndTestMessageToDev {
     Clear-Content -Path $destinationPath
 
     #Downloading blob to file
-    az storage blob download --account-name $storage --container-name $containerName --name ($minutes.ToString()+'.json') --file $destinationPath 
+    az storage blob download --container-name $containerName --name '.\blob.json' --file $destinationPath 
 
     #Getting the content of the blob from File
     $string = Get-Content -Path $destinationPath -Raw 
@@ -45,10 +41,6 @@ function SendAndTestMessageToDev {
 }
 function SendAndTestMessageToTest {
     Write-Host "Sending Message to Test environment"
-
-    #Getting the time of the sending
-    $date = Get-Date
-    $minutes = $date.Minute
     
     #Sending Message
     az iot device send-d2c-message --hub-name $iotHubName --device-id $deviceId --data $message
@@ -60,7 +52,7 @@ function SendAndTestMessageToTest {
     Clear-Content -Path $destinationPath
 
     #Downloading blob to file
-    az storage blob download --account-name $storage --container-name $containerName --name ($minutes.ToString()+'.json') --file $destinationPath 
+    az storage blob download --container-name $containerName --name '.\blob.json' --file $destinationPath 
     #Getting the content of the blob from File
     $string = Get-Content -Path $destinationPath -Raw 
 
@@ -85,7 +77,7 @@ function SendAndTestMessageToMain {
     Clear-Content -Path $destinationPath
 
     #Downloading blob to file
-    az storage blob download --account-name $storage --container-name $containerName --name ($minutes.ToString()+'.json') --file $destinationPath 
+    az storage blob download --container-name $containerName --name '/blob.json' --file $destinationPath --blob-url 'https://mytestdemojoihzsskii2rc.blob.core.windows.net/mytestdemoresults'
 
     #Getting the content of the blob from File
     $string = Get-Content -Path $destinationPath -Raw 
