@@ -7,7 +7,7 @@ $storage = "mytestdemojoihzsskii2rc"
 $deviceId = "PC"
 $message = "Testing this Message"
 $rgName = "rg-patrik-cerna"
-$containerName = 'mytestdemoresultS'
+$containerName = 'mytestdemoresults'
 
 $DestinationPath = 'UserStory2and3\Test.json'
 
@@ -30,7 +30,10 @@ function SendAndTestMessageToDev {
     $string = Get-Content -Path $destinationPath -Raw 
 
     #Checking if file contains the message
-    if ($string.Equals('') -or $string.Equals($null)){
+    if ($string -eq "" -or $null -eq $string){
+        Write-Output "Test Unsuccessfull"
+    }
+    else {
         if ($string.Contains($message)) {
             Write-Output "Test Successfull"
         } else {
@@ -52,12 +55,15 @@ function SendAndTestMessageToTest {
     Clear-Content -Path $destinationPath
 
     #Downloading blob to file
-    az storage blob download --container-name $containerName --name '.\blob.json' --file $destinationPath 
+    az storage blob download --container-name $containerName --name myTestDemoHubjoihzsskii2rc01202403081445/blob.json --file $destinationPath 
     #Getting the content of the blob from File
     $string = Get-Content -Path $destinationPath -Raw 
 
     #Checking if file contains the message
-    if ($string.Equals('') -or $string.Equals($null)){
+    if ($string -eq "" -or $null -eq $string){
+        Write-Output "Test Unsuccessfull"
+    }
+    else {
         if ($string.Contains($message)) {
             Write-Output "Test Successfull"
         } else {
@@ -83,7 +89,10 @@ function SendAndTestMessageToMain {
     $string = Get-Content -Path $destinationPath -Raw 
 
     #Checking if file contains the message
-    if ($string.Equals('') -or $string.Equals($null)){
+    if ($string -eq "" -or $null -eq $string){
+        Write-Output "Test Unsuccessfull"
+    }
+    else {
         if ($string.Contains($message)) {
             Write-Output "Test Successfull"
         } else {

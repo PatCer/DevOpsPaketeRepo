@@ -42,6 +42,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   kind: 'Storage'
 }
 
+//Container
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
   name: '${storageAccountName}/default/${storageContainerName}'
   properties: {
@@ -83,7 +84,7 @@ resource IoTHub 'Microsoft.Devices/IotHubs@2023-06-30' = {
       }
       routes: [
         {
-          name: 'ContosoStorageRoute'
+          name: 'SpeicherRoute'
           source: 'DeviceMessages'
           condition: 'level="storage"'
           endpointNames: [
@@ -122,7 +123,7 @@ resource IoTHub 'Microsoft.Devices/IotHubs@2023-06-30' = {
   }
 }
 
-// Azure Function
+// Azure Functions
 
 resource hostingPlan 'Microsoft.Web/serverfarms@2023-01-01' = {
   name: hostingPlanName
@@ -181,6 +182,7 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
   }
 }
 
+//Source also GitHub
 resource deploymentCredentials 'Microsoft.Web/sites/sourcecontrols@2023-01-01' = {
   parent: functionApp
   name: 'web'
