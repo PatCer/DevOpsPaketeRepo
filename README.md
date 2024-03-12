@@ -12,7 +12,7 @@
           CI is when the Code Changes get commited automatically in a zentral repo and get tested there.
           
       Continous Deployment:
-          After the Tests go through it gets deployed
+          After the Tests go through, it gets deployed
           
       Continous Delivery:
           The Automnation of Building, Testing, Configurating and Deploying a Repo
