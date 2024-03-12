@@ -90,11 +90,6 @@
       automated tools to access Azure resources
       
 ## Azure Resources to host a Website:
-
-    Cloud technologies can turn on and off like a tap. It's becoming so much easier to build solutions
-    in Azure, each and every day. Azure provides a myriad off services, from compute to data analytics.
-    We'll focus on several app hosting services, also known as compute services. This documentation 
-    include the following resources.
     
     Virtual Machines
     Virtual Machine, is one of Microsoft's first cloud services. Where you have control over everything
@@ -119,7 +114,7 @@
     Azure Functions might be a good option. You only pay for the execution time and resources,
     and it supports multiple languages.
     
-    Container in Azure
+    Container
     Firstly, it's good to know that Azure App Service or Azure Functions support containers.
     If you're building a solution that requires specific dependencies or languages that aren't
     supported by Azure App Service or Azure Functions, you can deploy your solution with a 
