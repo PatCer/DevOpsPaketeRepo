@@ -90,11 +90,6 @@
       automated tools to access Azure resources
       
 ## Azure Resources to host a Website:
-
-    Cloud technologies can turn on and off like a tap. It's becoming so much easier to build solutions
-    in Azure, each and every day. Azure provides a myriad off services, from compute to data analytics.
-    We'll focus on several app hosting services, also known as compute services. This documentation 
-    include the following resources.
     
     Virtual Machines
     Virtual Machine, is one of Microsoft's first cloud services. Where you have control over everything
