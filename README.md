@@ -91,4 +91,8 @@
       
 
 ## IoT Resource:
-    An IoT hub is a central platform that facilitates communication between IoT devices and the cloud. It collects, processes, and transmits data from various devices, ensuring secure and efficient bidirectional communication. Key functions include data ingestion, processing, and implementing security measures. IoT hubs play a pivotal role in managing large-scale device connectivity and contribute to the overall reliability and scalability of IoT ecosystems.
+    An IoT hub is a central platform that facilitates communication between IoT devices and the cloud.
+    It collects, processes, and transmits data from various devices, ensuring secure and efficient
+    bidirectional communication. Key functions include data ingestion, processing, and implementing
+    security measures. IoT hubs play a pivotal role in managing large-scale device connectivity and 
+    contribute to the overall reliability and scalability of IoT ecosystems.
