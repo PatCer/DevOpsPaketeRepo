@@ -7,7 +7,7 @@ param demoName string = 'myTestDemo'
 param location string = resourceGroup().location
 
 @description('The SKU to use for the IoT Hub.')
-param skuName string = 'S1'
+param skuName string = 'F1'
 
 @description('The number of IoT Hub units.')
 param skuUnits int = 1
@@ -39,14 +39,17 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   sku: {
     name: 'Standard_LRS'
   }
-  kind: 'Storage'
+  kind: 'StorageV2'
+  properties:{
+    allowBlobPublicAccess: true
+  }
 }
 
 //Container
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
   name: '${storageAccountName}/default/${storageContainerName}'
   properties: {
-    publicAccess: 'None'
+    publicAccess: 'Blob'
   }
   dependsOn: [
     storageAccount
@@ -74,7 +77,7 @@ resource IoTHub 'Microsoft.Devices/IotHubs@2023-06-30' = {
           {
             connectionString: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}'
             containerName: storageContainerName
-            fileNameFormat: '{iothub}{partition}{YYYY}{mm}{DD}{HH}{MM}/blob'
+            fileNameFormat: '{iothub}{partition}{YYYY}{MM}{DD}{HH}{mm}/blob'
             batchFrequencyInSeconds: 100
             maxChunkSizeInBytes: 104857600
             encoding: 'JSON'
@@ -86,7 +89,6 @@ resource IoTHub 'Microsoft.Devices/IotHubs@2023-06-30' = {
         {
           name: 'SpeicherRoute'
           source: 'DeviceMessages'
-          condition: 'level="storage"'
           endpointNames: [
             storageEndpoint
           ]
@@ -129,8 +131,8 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2023-01-01' = {
   name: hostingPlanName
   location: location
   sku: {
-    name: 'Y1'
-    tier: 'Dynamic'
+    name: 'F1'
+    tier: 'Free'
   }
   properties: {}
 }
