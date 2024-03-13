@@ -15,23 +15,29 @@ function SendAndTestMessageToDev {
     Write-Host "Sending Message to Test environment"
     
     #Sending Message
-    az iot device send-d2c-message --hub-name $iotHubName --device-id $deviceId --data $message
-    
-
+    az iot device send-d2c-message --hub-name $iotHubName --props '$.ct=application/json;$.ce=utf-8' --device-id $deviceId --data $message
+    $DateTime = Get-Date
     #Testing if Message was delivered Successfully
 
     #Clearing file
     Clear-Content -Path $destinationPath
 
     #Downloading blob to file
+    $DateTime = $DateTime.AddMinutes(1)
+    $utcTime = $DateTime.ToUniversalTime()
+    $year = $utcTime.Year.ToString("0000")
+    $month = $utcTime.Month.ToString("00")
+    $day = $utcTime.Day.ToString("00")
+    $hour = $utcTime.Hour.ToString("00")
+    $minute = $utcTime.Minute.ToString("00")
 
-    $utcDateTime = Get-Date -UFormat "%Y-%m-%d %H:%M"
-    $utcDateTimeString = $utcDateTime.ToString("yyyyMMddHHmm")
-    $blobName = "${iotHubName}01$utcDateTimeString\blob.json"
+    $utcString = $year+$month+$day+$hour+$minute
+
+    $blobName = "${iotHubName}01${utcString}\blob.json"
     Write-Host $blobName
 
     Write-Host "Waiting for Message to Be Sent"
-    Start-Sleep -Seconds 30
+    Start-Sleep -Seconds 150
     Write-Host "Testing if Message was Delivered Successfully"
 
     az storage blob download --container-name $containerName --name $blobName --file $destinationPath --account-name $storage
@@ -49,6 +55,7 @@ function SendAndTestMessageToDev {
             Write-Output "Test Unsuccessfull"
         }
     }
+    Clear-Content -Path $destinationPath
 }
 function SendAndTestMessageToTest {
     Write-Host "Sending Message to Test environment"
@@ -100,23 +107,29 @@ function SendAndTestMessageToMain {
     Write-Host "Sending Message to Test environment"
     
     #Sending Message
-    az iot device send-d2c-message --hub-name $iotHubName --device-id $deviceId --data $message
-    
-
+    az iot device send-d2c-message --hub-name $iotHubName --props '$.ct=application/json;$.ce=utf-8' --device-id $deviceId --data $message
+    $DateTime = Get-Date
     #Testing if Message was delivered Successfully
 
     #Clearing file
     Clear-Content -Path $destinationPath
 
     #Downloading blob to file
+    $DateTime = $DateTime.AddMinutes(1)
+    $utcTime = $DateTime.ToUniversalTime()
+    $year = $utcTime.Year.ToString("0000")
+    $month = $utcTime.Month.ToString("00")
+    $day = $utcTime.Day.ToString("00")
+    $hour = $utcTime.Hour.ToString("00")
+    $minute = $utcTime.Minute.ToString("00")
 
-    $utcDateTime = Get-Date -UFormat "%Y-%m-%d %H:%M"
-    $utcDateTimeString = $utcDateTime.ToString("yyyyMMddHHmm")
-    $blobName = "${iotHubName}01$utcDateTimeString\blob.json"
+    $utcString = $year+$month+$day+$hour+$minute
+
+    $blobName = "${iotHubName}01${utcString}\blob.json"
     Write-Host $blobName
 
     Write-Host "Waiting for Message to Be Sent"
-    Start-Sleep -Seconds 30
+    Start-Sleep -Seconds 150
     Write-Host "Testing if Message was Delivered Successfully"
 
     az storage blob download --container-name $containerName --name $blobName --file $destinationPath --account-name $storage
@@ -134,6 +147,7 @@ function SendAndTestMessageToMain {
             Write-Output "Test Unsuccessfull"
         }
     }
+    Clear-Content -Path $destinationPath
 }
 
 
