@@ -1,0 +1,44 @@
+name: Deploy to Azure
+
+on:
+  push:
+    branches:
+      - main
+      - test
+      - dev
+
+jobs:
+  deploy:
+    runs-on: windows-latest 
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2 
+
+# Install packages that are needed for the deployment
+    - name: Install Azure PowerShell module
+      run: Install-Module -Name Az -Force -AllowClobber
+    
+
+# Connecting to azure
+    - name: Login to Azure
+      run: |
+        $servicePrincipal = @{
+          clientId       = "${{ secrets.AZURE_CLIENT_ID }}"
+          clientSecret   = "${{ secrets.AZURE_CLIENT_SECRET }}"
+          tenantId       = "${{ ecrets.AZURE_TENANT_ID }}"
+        }
+         $credential = New-Object -TypeName PSCredential -ArgumentList $servicePrincipal.clientId, $(ConvertTo-SecureString -String $servicePrincipal.clientSecret -AsPlainText -Force)
+
+          Connect-AzAccount -ServicePrincipal -Credential $credential -Tenant $servicePrincipal.tenantId
+
+# Creates an rg with the name you want and the ps1 files ethat deploy stuff
+    - name: Deploy to Azure
+      shell: pwsh
+        
+        az group deployment create --resource-group <RESOURCE_GROUP_NAME> --template-file <TEMPLATE_FILE> --parameters <PARAMETERS_FILE>
+      
+# write here the paths of the ps.1 files
+      run: |
+          "<1st script's absolute path>"
+          "<2st script's absolute path>"

@@ -37,7 +37,7 @@ function SendAndTestMessageToDev {
     Write-Host $blobName
 
     Write-Host "Waiting for Message to Be Sent"
-    Start-Sleep -Seconds 150
+    Start-Sleep -Seconds 180
     Write-Host "Testing if Message was Delivered Successfully"
 
     az storage blob download --container-name $containerName --name $blobName --file $destinationPath --account-name $storage
@@ -83,7 +83,7 @@ function SendAndTestMessageToTest {
     Write-Host $blobName
 
     Write-Host "Waiting for Message to Be Sent"
-    Start-Sleep -Seconds 150
+    Start-Sleep -Seconds 180
     Write-Host "Testing if Message was Delivered Successfully"
 
     az storage blob download --container-name $containerName --name $blobName --file $destinationPath --account-name $storage
@@ -129,7 +129,7 @@ function SendAndTestMessageToMain {
     Write-Host $blobName
 
     Write-Host "Waiting for Message to Be Sent"
-    Start-Sleep -Seconds 150
+    Start-Sleep -Seconds 180
     Write-Host "Testing if Message was Delivered Successfully"
 
     az storage blob download --container-name $containerName --name $blobName --file $destinationPath --account-name $storage
