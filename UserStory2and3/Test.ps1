@@ -6,7 +6,6 @@ $iotHubName = "myTestDemoHubjoihzsskii2rc"
 $storage = "mytestdemojoihzsskii2rc"
 $deviceId = "PC"
 $message = "Testing this Message"
-$rgName = "rg-patrik-cerna"
 $containerName = "mytestdemoresults"
 
 $DestinationPath = 'UserStory2and3\Test.json'
