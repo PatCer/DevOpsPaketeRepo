@@ -1,34 +1,45 @@
-## Documentation about the "Test.ps1" file
-Before I start with the documentation, I would like to talk about the use of the script. The script should send messages to an IoT hub and store the message in a connected storage container. Afterwards, the sent message should be downloaded from the blob storage and checked if the file contains the correct message.
-<br></br>Here is the link to the code: [Testing Messages Code](https://github.com/JannicHeidrich/DevOps/blob/main/UserStorys/Two_Three/testingMessages.ps1)<br></br>
-Firstly, some variables are defined in the code, these variables are then assigned values such as the IoT Hub name, storage name, etc. and in addition a destination path is assigned, in which the downloaded blob file will be stored to a json file. 
+This repository contains deployment scripts and configurations for deploying IoT applications to different environments using Azure resources.
 
-    $iotHubName = "Name of the IoT Hub"
-    $storageAccountName = "Name of the storage Account"
-    $deviceId = "TestingDevice"
-    $message = "Testing Message"
-    $containerName = "Name of the container"
+### File Structure
 
-    $destinationPath = "UserStorys\Two_Three\test.json"
+- **Deploy.ps1**: PowerShell script for deploying IoT applications to different environments (dev, test, main).
+- **IoTMessageResourceTemplate.bicep**: Bicep file defining Azure resources for IoT applications.
+- **parameters.dev.json**: JSON file containing parameters for the development environment.
+- **parameters.test.json**: JSON file containing parameters for the testing environment.
+- **parameters.json**: JSON file containing parameters for the main (production) environment.
+- **TestScript.ps1**: PowerShell script for testing message delivery in different environments.
 
-When this is done, the message can be sent and the json file can be cleaned up.
+### IoTMessageResourceTemplate.bicep
 
-    az iot device send-d2c-message --hub-name $iotHubName --device-id $deviceId --data $message
+This Bicep file defines Azure resources required for IoT applications, including:
 
-    Clear-Content -Path $destinationPath
+- Storage Account
+- Blob Container
+- IoT Hub
+- Azure Functions
 
-As soon as the sending process is complete, the download is executed and the blob is saved in the json file. In addition, the message is read from the json and stored in a variable.
+### Deploy.ps1
 
-    az storage blob download --account-name $storageAccountName --container-name $containerName --name ("$minutes.json") --file $destinationPath
+This PowerShell script facilitates the deployment of IoT applications to various environments. It accepts an environment parameter to specify the target environment.
 
-    $string = Get-Content -Path $destinationPath -Raw
+#### Usage:
 
-Now we come to the real test. The first thing that is checked here is if the string contains something, if this is the case, the messages are compared. If the message received is the same as the message sent, then the test is successful. If this is not the case, the test is unsuccessful.
+```.\Deploy.ps1 -environment <environment>```
 
-    if ($string.Equals('') -or $string.Equals($null)){
-        if ($string.Contains($message)) {
-            Write-Output "Test Successfull"
-        } else {
-            Write-Output "Test Unsuccessfull"
-        }
-    }
+Replace `<environment>` with 'dev', 'test', or 'main' depending on the target environment.
+
+### TestScript.ps1
+
+This PowerShell script tests message delivery in different environments. It sends a test message to the IoT Hub and verifies its delivery by checking the associated blob storage.
+
+#### Usage:
+
+```.\TestScript.ps1 -branch <branch>```
+
+Replace `<branch>` with 'dev', 'test', or 'main' to test message delivery in the corresponding environment.
+
+### Note
+
+- Before executing deployment scripts, ensure you have appropriate permissions and necessary configurations in your Azure environment.
+- Customize parameters and configurations as per your project requirements.
+- Review Azure documentation for detailed information on each resource type and associated configurations.
