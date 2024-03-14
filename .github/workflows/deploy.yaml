@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-      - test
-      - dev
 
 jobs:
   deploy:
@@ -36,9 +34,9 @@ jobs:
     - name: Deploy to Azure
       shell: pwsh
         
-        az group deployment create --resource-group <RESOURCE_GROUP_NAME> --template-file <TEMPLATE_FILE> --parameters <PARAMETERS_FILE>
+        az group deployment create --resource-group rg-patrik-cerna --template-file UserStory2and3\IoTMessageResourceTemplate.bicep --parameters UserStory2and3\parameters.json
       
 # write here the paths of the ps.1 files
       run: |
-          "<1st script's absolute path>"
-          "<2st script's absolute path>"
+          "<1st script's absolute path>" 
+# how do i give absolute path if it in github?
