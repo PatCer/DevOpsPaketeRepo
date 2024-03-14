@@ -38,5 +38,5 @@ jobs:
       
 # write here the paths of the ps.1 files
       run: |
-          "" 
+          "<1st script's absolute path>" 
 # how do i give absolute path if it in github?
