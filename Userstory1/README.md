@@ -1,4 +1,4 @@
-ö# Azure Resources to host a Website:
+# Azure Resources to host a Website:
     
 #### Virtual Machines
 Microsoft's Virtual Machine provides full control for specialized needs, such as
